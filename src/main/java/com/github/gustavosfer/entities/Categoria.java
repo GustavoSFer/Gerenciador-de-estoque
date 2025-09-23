@@ -7,22 +7,15 @@ import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Data;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
+@Entity
 @Data
 @Builder
-@Entity
-public class Produto {
+public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
     private String descricao;
-    private BigDecimal preco;
-    private Integer quantidade;
-    private Categoria categoria;
-    private LocalDateTime dataCadastro;
 
 }
