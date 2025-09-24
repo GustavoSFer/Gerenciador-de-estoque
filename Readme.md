@@ -40,3 +40,96 @@ Ideal para aprendizado de **POO, Spring Boot, JPA/Hibernate, boas práticas de d
 1. Clone o repositório:
    ```bash
    git clone <URL_DO_REPOSITORIO>
+   
+
+## Requisitos
+Produto
+
+Campos:
+
+id (Long) – chave primária
+
+nome (String) – nome do produto
+
+descricao (String) – descrição do produto
+
+preco (BigDecimal) – preço unitário
+
+quantidade (Integer) – quantidade em estoque
+
+categoria (Categoria) – relacionamento com categoria
+
+dataCadastro (LocalDateTime) – data de inclusão do produto
+
+Categoria
+
+Campos:
+
+id (Long) – chave primária
+
+nome (String) – nome da categoria
+
+descricao (String) – opcional
+
+Relacionamento: Um produto pertence a uma categoria (ManyToOne) e uma categoria pode ter vários produtos (OneToMany).
+
+Fornecedor (opcional, mas útil para aprendizado)
+
+Campos:
+
+id (Long)
+
+nome (String)
+
+telefone (String)
+
+email (String)
+
+endereco (String)
+
+Um produto pode ter um fornecedor (ManyToOne).
+
+2️⃣ Funcionalidades do sistema
+
+Você pode implementar, gradualmente:
+
+CRUD de produtos
+
+Cadastrar novos produtos
+
+Atualizar produto (nome, preço, quantidade, categoria)
+
+Listar todos produtos
+
+Buscar produto por ID ou nome
+
+Excluir produto
+
+CRUD de categorias
+
+Cadastrar categorias
+
+Listar todas
+
+Atualizar categoria
+
+Excluir categoria (apenas se não houver produtos vinculados)
+
+CRUD de fornecedores (opcional)
+
+Cadastrar fornecedores
+
+Listar fornecedores
+
+Atualizar e excluir
+
+Funcionalidades extras
+
+Alerta de estoque baixo: listar produtos com quantidade <= 5
+
+Busca avançada: filtrar produtos por categoria ou fornecedor
+
+Relatório de produtos: gerar PDF ou CSV de estoque
+   
+
+
