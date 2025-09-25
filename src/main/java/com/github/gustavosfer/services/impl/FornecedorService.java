@@ -2,6 +2,7 @@ package com.github.gustavosfer.services.impl;
 
 import com.github.gustavosfer.dto.FornecedorRequestDTO;
 import com.github.gustavosfer.entities.Fornecedor;
+import com.github.gustavosfer.mapper.FornecedorMapper;
 import com.github.gustavosfer.repository.FornecedorRepository;
 import com.github.gustavosfer.services.FornecedorInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,10 @@ public class FornecedorService implements FornecedorInterface {
     private FornecedorRepository fornecedorRepository;
 
     @Override
-    public Fornecedor criarFornecedor(FornecedorRequestDTO fornecedor) {
-        Fornecedor adicionar = new Fornecedor();
-        adicionar.setNome(fornecedor.nome());
-        adicionar.setTelefone(fornecedor.telefone());
-        adicionar.setEmail(fornecedor.email());
-        adicionar.setEndereco(fornecedor.endereco());
+    public Fornecedor criarFornecedor(FornecedorRequestDTO fornecedorDto) {
+        Fornecedor fornecedor = FornecedorMapper.fornecedorDtoToFornecedor(fornecedorDto);
 
-        return fornecedorRepository.save(adicionar);
+        return fornecedorRepository.save(fornecedor);
     }
 
     @Override
