@@ -17,7 +17,13 @@ public class FornecedorService implements FornecedorInterface {
 
     @Override
     public Fornecedor criarFornecedor(FornecedorRequestDTO fornecedor) {
-        return null;
+        Fornecedor adicionar = new Fornecedor();
+        adicionar.setNome(fornecedor.nome());
+        adicionar.setTelefone(fornecedor.telefone());
+        adicionar.setEmail(fornecedor.email());
+        adicionar.setEndereco(fornecedor.endereco());
+
+        return fornecedorRepository.save(adicionar);
     }
 
     @Override
