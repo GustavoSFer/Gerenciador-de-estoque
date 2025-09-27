@@ -2,7 +2,6 @@ package com.github.gustavosfer.services.impl;
 
 import com.github.gustavosfer.dto.FornecedorRequestDTO;
 import com.github.gustavosfer.entities.Fornecedor;
-import com.github.gustavosfer.mapper.FornecedorMapper;
 import com.github.gustavosfer.repository.FornecedorRepository;
 import com.github.gustavosfer.services.FornecedorInterface;
 import org.modelmapper.ModelMapper;
