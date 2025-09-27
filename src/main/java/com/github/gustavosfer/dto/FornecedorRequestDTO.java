@@ -12,9 +12,6 @@ public record FornecedorRequestDTO(
         String telefone,
         @JsonProperty("email")
         @NotNull(message = "O email deve ser informado.")
-        String email,
-        @JsonProperty("endereco")
-        @NotNull(message = "O endereco deve ser informado.")
-        String endereco
+        String email
 ) {
 }
