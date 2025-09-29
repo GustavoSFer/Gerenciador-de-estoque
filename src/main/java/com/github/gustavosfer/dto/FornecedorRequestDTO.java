@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 
 public record FornecedorRequestDTO(
         @JsonProperty("nome")
-        @Size(max = 30, min = 6, message = "O nome deve conter pelo menos {min} e maximo de {max} de caracteres")
+        @Size(max = 30, min = 6, message = "O nome deve conter pelo menos {min} e maximo de {max} caracteres")
         @NotNull(message = "O nome deve ser informado.")
         String nome,
         @JsonProperty("telefone")
