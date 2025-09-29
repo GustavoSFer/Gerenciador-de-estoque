@@ -30,7 +30,7 @@ public class FornecedorService implements FornecedorInterface {
 
     @Override
     public List<Fornecedor> listaFornecedores() {
-        return List.of();
+        return fornecedorRepository.findAll();
     }
 
     @Override
