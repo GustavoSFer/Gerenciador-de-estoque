@@ -2,6 +2,7 @@ package com.github.gustavosfer.services.impl;
 
 import com.github.gustavosfer.dto.FornecedorRequestDTO;
 import com.github.gustavosfer.entities.Fornecedor;
+import com.github.gustavosfer.exceptions.fornecedorException.FornecedorNotFoundException;
 import com.github.gustavosfer.repository.FornecedorRepository;
 import com.github.gustavosfer.services.FornecedorInterface;
 import org.modelmapper.ModelMapper;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FornecedorService implements FornecedorInterface {
@@ -35,7 +37,8 @@ public class FornecedorService implements FornecedorInterface {
 
     @Override
     public Fornecedor findByFornecedor(Long id) {
-        return null;
+        Optional<Fornecedor> fornecedor = fornecedorRepository.findById(id);
+        return fornecedor.orElseThrow(() -> new FornecedorNotFoundException("Fornecedor não encontrado!"));
     }
 
     @Override

@@ -33,4 +33,11 @@ public class FornecedorController {
 
         return ResponseEntity.ok().body(fornecedores);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Fornecedor> buscarFornecedorById(@PathVariable Long id) {
+        Fornecedor fornecedor = fornecedorService.findByFornecedor(id);
+
+        return ResponseEntity.ok().body(fornecedor);
+    }
 }
