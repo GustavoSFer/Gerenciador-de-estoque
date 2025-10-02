@@ -50,4 +50,13 @@ public class FornecedorController {
         logger.info("[Controller] - " + FIM_BUSCAR_FORNECEDOR);
         return ResponseEntity.ok().body(fornecedor);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Fornecedor> atualizarFornecedor(@PathVariable Long id, @RequestBody FornecedorRequestDTO fornecedorRequestDTO) {
+        logger.info("[Controller] - " + INICIO_ATUALIZAR_FORNECEDOR);
+        Fornecedor fornecedor = fornecedorService.atualizarFornecedor(id, fornecedorRequestDTO);
+
+        logger.info("[Controller] - " + FIM_ATUALIZAR_FORNECEDOR);
+        return ResponseEntity.ok().body(fornecedor);
+    }
 }
