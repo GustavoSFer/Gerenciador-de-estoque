@@ -2,7 +2,6 @@ package com.github.gustavosfer.exceptions;
 
 import com.github.gustavosfer.exceptions.fornecedorException.FornecedorNotFoundException;
 import jakarta.validation.ConstraintViolationException;
-import jdk.jshell.Snippet;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

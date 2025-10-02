@@ -43,7 +43,14 @@ public class FornecedorService implements FornecedorInterface {
 
     @Override
     public Fornecedor atualizarFornecedor(Long id, FornecedorRequestDTO fornecedor) {
-        return null;
+        Fornecedor fornecedorBanco = findByFornecedor(id);
+
+        fornecedorBanco.setNome(fornecedor.nome());
+        fornecedorBanco.setEmail(fornecedor.email());
+        fornecedorBanco.setEndereco(fornecedor.endereco());
+        fornecedorBanco.setTelefone(fornecedor.telefone());
+
+        return fornecedorRepository.save(fornecedorBanco);
     }
 
     @Override
