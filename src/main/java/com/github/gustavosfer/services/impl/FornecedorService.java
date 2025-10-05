@@ -54,7 +54,9 @@ public class FornecedorService implements FornecedorInterface {
     }
 
     @Override
-    public Fornecedor deletarFornecedor(Long id) {
-        return null;
+    public void deletarFornecedor(Long id) {
+        Fornecedor fornecedor = findByFornecedor(id);
+
+        fornecedorRepository.delete(fornecedor);
     }
 }

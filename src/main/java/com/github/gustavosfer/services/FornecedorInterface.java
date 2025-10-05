@@ -11,5 +11,5 @@ public interface FornecedorInterface {
     public List<Fornecedor> listaFornecedores();
     public Fornecedor findByFornecedor(Long id);
     public Fornecedor atualizarFornecedor(Long id, FornecedorRequestDTO fornecedor);
-    public Fornecedor deletarFornecedor(Long id);
+    public void deletarFornecedor(Long id);
 }

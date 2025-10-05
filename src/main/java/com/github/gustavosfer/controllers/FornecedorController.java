@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,5 +59,12 @@ public class FornecedorController {
 
         logger.info("[Controller] - " + FIM_ATUALIZAR_FORNECEDOR);
         return ResponseEntity.ok().body(fornecedor);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deletarFornecedor( @PathVariable Long id) {
+        fornecedorService.deletarFornecedor(id);
+
+        return ResponseEntity.noContent().build();
     }
 }
