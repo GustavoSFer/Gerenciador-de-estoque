@@ -63,8 +63,10 @@ public class FornecedorController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deletarFornecedor( @PathVariable Long id) {
+        logger.info("[Controller] - " + INICIO_DELETAR_FORNECEDOR);
         fornecedorService.deletarFornecedor(id);
 
+        logger.info("[Controller] - " + FIM_DELETAR_FORNECEDOR);
         return ResponseEntity.noContent().build();
     }
 }
