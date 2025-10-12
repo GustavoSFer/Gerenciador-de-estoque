@@ -52,7 +52,7 @@ public class FornecedorController {
         return ResponseEntity.ok().body(fornecedor);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     public ResponseEntity<Fornecedor> atualizarFornecedor(@RequestBody Fornecedor fornecedor) {
         logger.info("[Controller] - " + INICIO_ATUALIZAR_FORNECEDOR);
         Fornecedor fornecedorAtualizado = fornecedorService.atualizarFornecedor(fornecedor);

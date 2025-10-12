@@ -31,12 +31,18 @@ public class FornecedorService implements FornecedorInterface {
         Fornecedor fornecedor = modelMapper.map(fornecedorDto, Fornecedor.class);
         fornecedor.setEndereco("Rua padrao de teste");
 
-        return fornecedorRepository.save(fornecedor);
+        var dto = fornecedorRepository.save(fornecedor);
+        addHateoasLinks(dto);
+
+        return dto;
     }
 
     @Override
     public List<Fornecedor> listaFornecedores() {
-        return fornecedorRepository.findAll();
+        var fornecedores = fornecedorRepository.findAll();
+        fornecedores.forEach(p -> addHateoasLinks(p));
+
+        return fornecedores;
     }
 
     @Override
@@ -57,7 +63,10 @@ public class FornecedorService implements FornecedorInterface {
         fornecedorBanco.setEndereco(fornecedor.getEndereco());
         fornecedorBanco.setTelefone(fornecedor.getTelefone());
 
-        return fornecedorRepository.save(fornecedorBanco);
+        var dto = fornecedorRepository.save(fornecedorBanco);
+        addHateoasLinks(dto);
+
+        return dto;
     }
 
     @Override
