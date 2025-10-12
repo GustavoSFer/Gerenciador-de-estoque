@@ -1,20 +1,19 @@
 package com.github.gustavosfer.services.impl;
 
 import com.github.gustavosfer.controllers.FornecedorController;
-import com.github.gustavosfer.dto.FornecedorRequestDTO;
 import com.github.gustavosfer.entities.Fornecedor;
 import com.github.gustavosfer.exceptions.fornecedorException.FornecedorNotFoundException;
 import com.github.gustavosfer.repository.FornecedorRepository;
 import com.github.gustavosfer.services.FornecedorInterface;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Service
 public class FornecedorService implements FornecedorInterface {
