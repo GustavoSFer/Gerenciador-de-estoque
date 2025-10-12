@@ -3,8 +3,9 @@ package com.github.gustavosfer.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.hateoas.RepresentationModel;
 
-public record FornecedorRequestDTO(
+public record FornecedorRequestDTO (
         @JsonProperty("nome")
         @Size(max = 30, min = 6, message = "O nome deve conter pelo menos {min} e maximo de {max} caracteres")
         @NotNull(message = "O nome deve ser informado.")
