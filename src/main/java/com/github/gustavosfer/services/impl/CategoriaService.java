@@ -1,11 +1,13 @@
 package com.github.gustavosfer.services.impl;
 
 import com.github.gustavosfer.entities.Categoria;
+import com.github.gustavosfer.exceptions.fornecedorException.CategoriaNotFoundException;
 import com.github.gustavosfer.repository.CategoriaRepository;
 import com.github.gustavosfer.services.CategoriaInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Optional;
 
 public class CategoriaService implements CategoriaInterface {
 
@@ -24,7 +26,9 @@ public class CategoriaService implements CategoriaInterface {
 
     @Override
     public Categoria buscarCategoria(Long id) {
-        return null;
+        Optional<Categoria> categoria = categoriaRepository.findById(id);
+
+        return categoria.orElseThrow(() -> new CategoriaNotFoundException("Categoria não encontrata!"));
     }
 
     @Override
