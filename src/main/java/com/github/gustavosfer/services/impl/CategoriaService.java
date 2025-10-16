@@ -14,12 +14,12 @@ public class CategoriaService implements CategoriaInterface {
 
     @Override
     public Categoria criarCategoria(Categoria categoria) {
-        return null;
+        return categoriaRepository.save(categoria);
     }
 
     @Override
     public List<Categoria> listarCategoria() {
-        return List.of();
+        return categoriaRepository.findAll();
     }
 
     @Override
