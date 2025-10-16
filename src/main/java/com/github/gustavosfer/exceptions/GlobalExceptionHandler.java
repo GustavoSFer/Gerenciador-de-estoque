@@ -1,5 +1,6 @@
 package com.github.gustavosfer.exceptions;
 
+import com.github.gustavosfer.exceptions.fornecedorException.CategoriaNotFoundException;
 import com.github.gustavosfer.exceptions.fornecedorException.FornecedorNotFoundException;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,16 @@ public class GlobalExceptionHandler {
         StartHandleException error = new StartHandleException(e.getMessage(), now, status);
 
         return ResponseEntity.status(status).body(error);
+    }
+
+    @ExceptionHandler(CategoriaNotFoundException.class)
+    public ResponseEntity<StartHandleException> categoriaNotFound(CategoriaNotFoundException e) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        Instant now = Instant.now();
+
+        StartHandleException startHandleException = new StartHandleException(e.getMessage(), now, status);
+
+        return ResponseEntity.status(status).body(startHandleException);
     }
 
 }
