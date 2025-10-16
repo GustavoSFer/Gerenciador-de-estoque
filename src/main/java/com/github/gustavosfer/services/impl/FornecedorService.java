@@ -1,6 +1,6 @@
 package com.github.gustavosfer.services.impl;
 
-import com.github.gustavosfer.dto.FornecedorRequestDTO;
+import com.github.gustavosfer.controllers.FornecedorController;
 import com.github.gustavosfer.entities.Fornecedor;
 import com.github.gustavosfer.exceptions.fornecedorException.FornecedorNotFoundException;
 import com.github.gustavosfer.repository.FornecedorRepository;
@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @Service
 public class FornecedorService implements FornecedorInterface {
 
@@ -22,35 +25,47 @@ public class FornecedorService implements FornecedorInterface {
     private ModelMapper modelMapper;
 
     @Override
-    public Fornecedor criarFornecedor(FornecedorRequestDTO fornecedorDto) {
+    public Fornecedor criarFornecedor(Fornecedor fornecedorDto) {
 
         Fornecedor fornecedor = modelMapper.map(fornecedorDto, Fornecedor.class);
         fornecedor.setEndereco("Rua padrao de teste");
 
-        return fornecedorRepository.save(fornecedor);
+        var dto = fornecedorRepository.save(fornecedor);
+        addHateoasLinks(dto);
+
+        return dto;
     }
 
     @Override
     public List<Fornecedor> listaFornecedores() {
-        return fornecedorRepository.findAll();
+        var fornecedores = fornecedorRepository.findAll();
+        fornecedores.forEach(p -> addHateoasLinks(p));
+
+        return fornecedores;
     }
 
     @Override
     public Fornecedor findByFornecedor(Long id) {
         Optional<Fornecedor> fornecedor = fornecedorRepository.findById(id);
-        return fornecedor.orElseThrow(() -> new FornecedorNotFoundException("Fornecedor não encontrado!"));
+        var dto = fornecedor.orElseThrow(() -> new FornecedorNotFoundException("Fornecedor não encontrado!"));
+        addHateoasLinks(dto);
+
+        return dto;
     }
 
     @Override
-    public Fornecedor atualizarFornecedor(Long id, FornecedorRequestDTO fornecedor) {
-        Fornecedor fornecedorBanco = findByFornecedor(id);
+    public Fornecedor atualizarFornecedor(Fornecedor fornecedor) {
+        Fornecedor fornecedorBanco = findByFornecedor(fornecedor.getId());
 
-        fornecedorBanco.setNome(fornecedor.nome());
-        fornecedorBanco.setEmail(fornecedor.email());
-        fornecedorBanco.setEndereco(fornecedor.endereco());
-        fornecedorBanco.setTelefone(fornecedor.telefone());
+        fornecedorBanco.setNome(fornecedor.getNome());
+        fornecedorBanco.setEmail(fornecedor.getEmail());
+        fornecedorBanco.setEndereco(fornecedor.getEndereco());
+        fornecedorBanco.setTelefone(fornecedor.getTelefone());
 
-        return fornecedorRepository.save(fornecedorBanco);
+        var dto = fornecedorRepository.save(fornecedorBanco);
+        addHateoasLinks(dto);
+
+        return dto;
     }
 
     @Override
@@ -58,5 +73,13 @@ public class FornecedorService implements FornecedorInterface {
         Fornecedor fornecedor = findByFornecedor(id);
 
         fornecedorRepository.delete(fornecedor);
+    }
+
+    private static void addHateoasLinks(Fornecedor dto) {
+        dto.add(linkTo(methodOn(FornecedorController.class).buscarFornecedorById(dto.getId())).withSelfRel().withType("GET"));
+        dto.add(linkTo(methodOn(FornecedorController.class).listarFornecedor()).withRel("findAll").withType("GET"));
+        dto.add(linkTo(methodOn(FornecedorController.class).cadastrarFornecedor(dto)).withRel("create").withType("POST"));
+        dto.add(linkTo(methodOn(FornecedorController.class).atualizarFornecedor(dto)).withRel("update").withType("PUT"));
+        dto.add(linkTo(methodOn(FornecedorController.class).deletarFornecedor(dto.getId())).withRel("delete").withType("DELETE"));
     }
 }

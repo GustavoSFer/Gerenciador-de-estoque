@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface FornecedorInterface {
 
-    public Fornecedor criarFornecedor(FornecedorRequestDTO fornecedor);
+    public Fornecedor criarFornecedor(Fornecedor fornecedor);
     public List<Fornecedor> listaFornecedores();
     public Fornecedor findByFornecedor(Long id);
-    public Fornecedor atualizarFornecedor(Long id, FornecedorRequestDTO fornecedor);
+    public Fornecedor atualizarFornecedor(Fornecedor fornecedor);
     public void deletarFornecedor(Long id);
 }
