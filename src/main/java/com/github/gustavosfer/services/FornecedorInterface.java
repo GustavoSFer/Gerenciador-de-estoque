@@ -1,6 +1,5 @@
 package com.github.gustavosfer.services;
 
-import com.github.gustavosfer.dto.FornecedorRequestDTO;
 import com.github.gustavosfer.entities.Fornecedor;
 
 import java.util.List;
