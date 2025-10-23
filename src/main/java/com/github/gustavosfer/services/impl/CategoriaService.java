@@ -44,6 +44,7 @@ public class CategoriaService implements CategoriaInterface {
 
     @Override
     public void deletarCategoria(Long id) {
-
+        Categoria categoria = buscarCategoria(id);
+        categoriaRepository.delete(categoria);
     }
 }
