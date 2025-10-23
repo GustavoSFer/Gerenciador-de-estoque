@@ -3,7 +3,6 @@ package com.github.gustavosfer.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.springframework.hateoas.RepresentationModel;
 
 public record FornecedorRequestDTO (
         @JsonProperty("nome")
