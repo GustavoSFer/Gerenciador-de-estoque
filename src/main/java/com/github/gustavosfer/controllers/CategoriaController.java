@@ -6,13 +6,12 @@ import org.apache.coyote.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/categorias")
@@ -30,6 +29,13 @@ public class CategoriaController {
         Categoria categoriaCriado = categoriaService.criarCategoria(categoria);
 
         logger.info("Finalizando a criação de categoria");
-        return ResponseEntity.ok().body(categoriaCriado);
+        return ResponseEntity.status(HttpStatus.CREATED).body(categoriaCriado);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Categoria>> listarCategorias() {
+        List<Categoria> categorias = categoriaService.listarCategoria();
+
+        return ResponseEntity.ok().body(categorias);
     }
 }
