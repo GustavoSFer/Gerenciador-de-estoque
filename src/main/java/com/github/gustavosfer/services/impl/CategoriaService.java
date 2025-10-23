@@ -33,7 +33,13 @@ public class CategoriaService implements CategoriaInterface {
 
     @Override
     public Categoria atualizarCategoria(Categoria categoria) {
-        return null;
+        Categoria categoriaBanco = buscarCategoria(categoria.getId());
+
+        categoriaBanco.setNome(categoria.getNome());
+        categoriaBanco.setDescricao(categoria.getDescricao());
+        categoriaBanco.setProdutos(categoria.getProdutos());
+
+        return categoriaRepository.save(categoriaBanco);
     }
 
     @Override
