@@ -5,10 +5,12 @@ import com.github.gustavosfer.exceptions.fornecedorException.CategoriaNotFoundEx
 import com.github.gustavosfer.repository.CategoriaRepository;
 import com.github.gustavosfer.services.CategoriaInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class CategoriaService implements CategoriaInterface {
 
     @Autowired
